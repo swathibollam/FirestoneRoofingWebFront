@@ -1,0 +1,134 @@
+<h2 mat-dialog-title class="kr-header-h2">New Order</h2>
+
+<form class="order-container" [formGroup]="orderForm" (ngSubmit)="save()" novalidate>
+
+  <mat-dialog-content>
+
+    <div *ngIf="errorMessage" class="kr-error mat-error">
+      {{errorMessage}}
+    </div>
+
+    <mat-form-field>
+      <input matInput formControlName="purchOrderNum" type="number" placeholder="Purchase order number *"/>
+      <mat-error *ngIf="orderForm.get('purchOrderNum').invalid">Please enter a number with at least 3 digits.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="salesOrderNum" type="number" placeholder="Sales order number *"/>
+      <mat-error *ngIf="orderForm.get('salesOrderNum').invalid">Please enter a number with at least 3 digits.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="orderDate" [matDatepicker]="odPicker"
+             placeholder="Order Date *">
+      <mat-datepicker-toggle matSuffix [for]="odPicker"></mat-datepicker-toggle>
+      <mat-datepicker [touchUi]="true" #odPicker></mat-datepicker>
+      <mat-error *ngIf="orderForm.get('orderDate').invalid">Please enter Order date.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="pickupOrDeliverDate"
+             [matDatepicker]="pickDeliveryPicker"
+             placeholder="Pickup/Delivery Date *">
+      <mat-datepicker-toggle matSuffix [for]="pickDeliveryPicker"></mat-datepicker-toggle>
+      <mat-datepicker [touchUi]="true" #pickDeliveryPicker></mat-datepicker>
+      <mat-error *ngIf="orderForm.get('pickupOrDeliverDate').invalid">
+        Please enter pickup/delivery date.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select formControlName="userId" placeholder="Select Contractor *">
+        <mat-option *ngFor="let u of users" [value]="u.guid">
+          {{u.firstName + ' ' + u.lastName}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="orderForm.get('userId').invalid">Please select a contractor.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select formControlName="materialType" placeholder="Select Material Type *">
+        <mat-option *ngFor="let mtv of materialTypeValues" [value]="mtv">
+          {{mtv.charAt(0).toUpperCase() + mtv.slice(1)}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="orderForm.get('materialType').invalid">Please select Material Type.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="productType" type="text" placeholder="Product Type"/>
+    </mat-form-field>
+
+    <label class="radio-label">Order type *</label>
+    <mat-radio-group formControlName="orderType">
+      <mat-radio-button *ngFor="let otv of orderTypeValues" [value]="otv">
+        {{otv.charAt(0).toUpperCase() + otv.slice(1)}}
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field>
+      <input matInput formControlName="jobName" type="text" placeholder="Job Name *"/>
+      <mat-error *ngIf="orderForm.get('jobName').invalid">Please enter Job Name.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="addressLine" type="text" placeholder="Address Line"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="city" type="text" placeholder="Enter city *"/>
+      <mat-error *ngIf="orderForm.get('city').invalid">Please enter a city with at least 3 letters.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select formControlName="addrState" placeholder="Select State *">
+        <mat-option *ngFor="let uss of usStates" [value]="uss">
+          {{uss}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="orderForm.get('addrState').invalid">Please select State.</mat-error>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="pickedOrDelivered">Completed</mat-checkbox>
+
+    <div class="new-order-confirmations-div">
+      <label class="checkbox-label">Order confirmed prior to: </label>
+      <mat-checkbox formControlName="orderConfirmation4DaysPrior">4 days</mat-checkbox>
+      <mat-checkbox formControlName="orderConfirmation2DaysPrior">2 days</mat-checkbox>
+      <mat-checkbox formControlName="orderConfirmation1DayPrior">1 day</mat-checkbox>
+    </div>
+
+    <mat-form-field class="new-order-notes">
+      <textarea matInput formControlName="note" placeholder="Notes" matTextareaAutosize matAutosizeMinRows="2"
+                matAutosizeMaxRows="4"></textarea>
+    </mat-form-field>
+
+    <!--<div>{{orderForm.valid}}</div>
+    <div>{{orderForm.value}}</div>
+    <div>{{orderForm.controls}}</div>
+    <div>{{orderForm.get('purchaseOrderNum').errors | json}}</div>
+    <div>{{orderForm.get('purchaseOrderNum').errors}}</div>
+    <div>{{orderForm.get('purchaseOrderNum').touched}}</div>
+    <div>{{orderForm.get('purchaseOrderNum').invalid}}</div>
+    <div>{{orderForm.get('purchaseOrderNum').dirty}}</div>-->
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+
+    <button type="submit" mat-button color="accent" [disabled]="!orderForm.valid">
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+
+    <button mat-button (click)="close()" type="button">
+      <mat-icon>close</mat-icon>
+      Close
+    </button>
+
+  </mat-dialog-actions>
+
+</form>

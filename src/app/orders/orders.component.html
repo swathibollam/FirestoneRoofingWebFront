@@ -1,0 +1,171 @@
+<!--<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    &lt;!&ndash;- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" &ndash;&gt;
+
+    &lt;!&ndash; Position Column &ndash;&gt;
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+    </ng-container>
+
+    &lt;!&ndash; Name Column &ndash;&gt;
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    &lt;!&ndash; Weight Column &ndash;&gt;
+    <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+    </ng-container>
+
+    &lt;!&ndash; Symbol Column &ndash;&gt;
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>-->
+
+<!--<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    &lt;!&ndash; ID Column &ndash;&gt;
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+
+    &lt;!&ndash; Progress Column &ndash;&gt;
+    <ng-container matColumnDef="progress">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Progress </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.progress}}% </mat-cell>
+    </ng-container>
+
+    &lt;!&ndash; Name Column &ndash;&gt;
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+    </ng-container>
+
+    &lt;!&ndash; Color Column &ndash;&gt;
+    <ng-container matColumnDef="color">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Color </mat-header-cell>
+      <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>-->
+
+
+<div *ngIf="errorMessage" class="kr-error mat-error">
+  {{errorMessage}}
+</div>
+
+<div class="example-header filter_flex_box">
+  <mat-form-field class="mat_form_field_filter">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
+  <mat-form-field class="mat_form_field_filter">
+    <input matInput [matDatepicker]="pdFromDate" placeholder="Pick/Deliver Dt From"
+           [formControl]="fromDate" (dateChange)="dateRangeUpdate()">
+    <mat-datepicker-toggle matSuffix [for]="pdFromDate"></mat-datepicker-toggle>
+    <mat-datepicker #pdFromDate></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="mat_form_field_filter">
+    <input matInput [matDatepicker]="pdToDate" placeholder="Pick/Deliver Dt To"
+           (dateChange)="dateRangeUpdate()" [formControl]="toDate">
+    <mat-datepicker-toggle matSuffix [for]="pdToDate"></mat-datepicker-toggle>
+    <mat-datepicker #pdToDate></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="purchaseOrderNum">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Purchase Ord#</mat-header-cell>
+      <mat-cell *matCellDef="let row"> <a mat-button (click)="openEditOrderDialog(row)">{{row.purchOrderNum}} <mat-icon>mode_edit</mat-icon></a> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="salesOrderNum">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Sales Ord#</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.salesOrderNum}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="jobName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Job Name</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.jobName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="materialType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Material Type</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.materialType}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="orderType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Order Type</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.orderType}}</mat-cell>
+    </ng-container>
+
+    <!--<ng-container matColumnDef="Contractor">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Contractor</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{getContractorName(row.userId)}}</mat-cell>
+    </ng-container>-->
+
+    <ng-container matColumnDef="Contractor">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Contractor</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.contractorName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pickDeliverDt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Pick/Deliver Dt</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.pickupOrDeliverDate | date:'d MMM yy'}}</mat-cell>
+      <!--<mat-cell *matCellDef="let row"> {{row.pickupOrDeliverDate | date:'d MMM yy, h:mm a'}}</mat-cell>-->
+    </ng-container>
+
+    <ng-container matColumnDef="addrState">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> State</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.addrState}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="orderStatus">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{getOrderStatus(row)}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="note">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Note</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.note}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 8, 15, 25, 50]"></mat-paginator>
+
+</div>
+

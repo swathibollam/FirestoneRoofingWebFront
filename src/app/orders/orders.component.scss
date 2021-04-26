@@ -1,0 +1,55 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.filter_flex_box {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.filter_search_text {
+  flex-grow: 2;
+}
+
+.filter_search_dates {
+  flex-grow: 1;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat_form_field_filter {
+  width: auto;
+}
+
+.mat-table {
+  overflow: auto;
+  //max-height: 500px;
+}
+
+.mat-cell {
+  margin: 0px 4px 0px 0px;
+}
+
+.mat-row {
+  padding: 4px;
+}
+
+mat-row:nth-child(even){
+  background-color: lighten(lightblue, 10%);
+  //background-color: mat-color($primary, lighter);
+}
+
+/*mat-row:nth-child(odd){
+  background-color:black;
+}*/

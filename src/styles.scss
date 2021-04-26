@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+//@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+//@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+//@import "~@angular/material/prebuilt-themes/purple-green.css";
+
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+/*$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+// The warn palette is optional (defaults to red).
+$dark-warn:    mat-palette($mat-deep-orange);
+// Create the theme object (a Sass map containing all of the palettes).
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($dark-theme);*/
+
+
+//$kr-app-primary: mat-palette($mat-indigo);
+$kr-app-primary: mat-palette($mat-light-blue);
+$kr-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$kr-app-warn:    mat-palette($mat-red);
+$kr-app-theme: mat-light-theme($kr-app-primary, $kr-app-accent, $kr-app-warn);
+@include angular-material-theme($kr-app-theme);
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.mat-radio-button {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  margin: 0px 10px 20px;
+}
+
+.mat-checkbox {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  margin-right: 15px;
+}
+
+.kr-header-h2 {
+  text-align: center;
+}
+
+.kr-card {
+  max-width: 400px;
+}
+
+.kr-error {
+  margin-top: 10px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  text-align: center;
+  font-size: 17px;
+}
+
+
+

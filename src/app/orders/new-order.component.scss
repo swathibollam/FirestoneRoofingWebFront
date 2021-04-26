@@ -1,0 +1,46 @@
+.order-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-container > * {
+  width: 100%;
+}
+
+.kr-order-h2 {
+  text-align: center;
+}
+
+.radio-label {
+  font-size: 14px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.checkbox-label {
+  font-size: 14px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin-right: 10px;
+}
+
+
+.new-order-notes {
+  margin-top: 10px;
+}
+
+.new-order-confirmations-div {
+  margin-top: 20px;
+}
+
+//margin-bottom: 35px;
+
+/*.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.example-margin {
+  margin: 0 10px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}*/

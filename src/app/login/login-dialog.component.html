@@ -1,0 +1,34 @@
+<h2 mat-dialog-title class="kr-header-h2">Roofing Login</h2>
+
+<div *ngIf="userAuth && !userAuth.isAuthenticated" class="mat-error kr-error">Please enter correct credentials.</div>
+<br>
+
+<form class="login-container" [formGroup]="loginDialogForm" (ngSubmit)="login()" novalidate>
+
+  <mat-dialog-content>
+
+    <mat-form-field>
+      <input matInput formControlName="username" type="text" placeholder="Username *"/>
+      <mat-error *ngIf="loginDialogForm.get('username').invalid">Please enter username.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="password" type="password" placeholder="Password *"/>
+      <mat-error *ngIf="loginDialogForm.get('password').invalid">Please enter password with at least 8 letters.
+      </mat-error>
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+
+    <button type="submit" mat-button color="accent" [disabled]="!loginDialogForm.valid">
+      <!--<mat-icon>save</mat-icon>-->
+      Login
+    </button>
+
+  </mat-dialog-actions>
+
+</form>
+

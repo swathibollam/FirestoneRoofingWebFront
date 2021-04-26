@@ -1,7 +1,7 @@
-# KellyRoofingWebFront
+# FirestoneRoofingWebFront
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.2.
-Created using: ng new KellyRoofingWebFront --routing=true --style=scss -sg
+Created using: ng new FirestoneRoofingWebFront --routing=true --style=scss -sg
 
 ## Development server
 
